@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. Mérföldkő</title>
+</head>
+
+<body>
+    <h1>1. Mérföldkő</h1>
+
+    <ul>
+        <li>
+            <a href="index.html">Főoldal</a>
+        </li>
+        <li>
+            <a href="2merfoldko.html">2. Mérföldkő</a>
+        </li>
+    </ul>
+
+    <h2>Parkolóhelyek detektálása</h2>
+    <h3>Szükséges függvénykönyvtárak:</h3>
+    <ul>
+        <li>openCV</li>
+        <li>numpy</li>
+        <li>matplotlib</li>
+    </ul>
+    <h3>Algoritmus tervezés:</h3>
+
+    <p>A program tervezése során a 4. pontban több lehetséges megoldás is az eszembe jutott, amelyeket lent
+        ismertetek
+        is.</p>
+
+    <ol type="1">
+        <li>Kép beolvasása</li>
+        <li>A beolvasott kép szürkeárnyalatossá alakítása</li>
+        <li>Gauss simítás alkalmazása a további zajok eltávolítására</li>
+        <li>Autók és parkolóhelyek detektálása</li>
+        <ol type="A">
+            <li>Élek keresése Canny-vel, majd vizsgált területek kijelölése. </li>
+            <li>Sarokpontok keresése Harris és Shi-Thomasi sarokdetektorokkal.</li>
+            <ol type="a">
+                <li>Detektorparaméterek beállítása</li>
+                <li>Sarokpontok detektálása a cornorHarris() függvénnyel vagy a goodFeaturesToTrack() függvénnyel,
+                    amely már a sarokpontok koordinátait adja vissza.</li>
+                <li>Minimum és maximum értékek meghatározása</li>
+                <li>Küszöbérték meghatározása</li>
+            </ol>
+            <li>Mintafelismerés: gradiens irány-hisztogram (HOG- Histogram of Oriented Gradients) használatával</li>
+            <ol type="a">
+                <li>A HOG leíró létrehozása</li>
+                <li>SVM osztályozó tanítása</li>
+                <li>A detektálás elvégzése</li>
+            </ol>
+            <li>Kép intenzitásértékeinek vizsgálata</li>
+        </ol>
+        <li>Téglalapok rajzolása</li>
+        <li>A kijelölt téglalapok vizsgálata. Van-e ott parkoló autó?</li>
+    </ol>
+    <h3>Források:</h3>
+    <ul>
+        <li>Tanács Attila: Képregisztráció gyakorlat. Készült az EFOP-3.5.1-16-2017-00004 pályázat támogatásával.
+        </li>
+        <li><a href=" http://www.inf.u-szeged.hu/~tanacs/oktatas/kepreg2019/" target="_blank">
+                http://www.inf.u-szeged.hu/~tanacs/oktatas/kepreg2019/</a></li>
+        <li>Digitális képfeldolgozás gyakorlat jegyzet:</li>
+        <li><a href="http://www.inf.u-szeged.hu/~tanacs/pyocv/index.html"
+                target="_blank">http://www.inf.u-szeged.hu/~tanacs/pyocv/index.html .</a></li>
+        <li>Németh Gábor: Ipari képfeldolgozás e-feladatgyűjtemény. </li>
+        <li><a href="https://www.inf.u-szeged.hu/~gnemeth/kurzusok/iparikepfeldolgozas/iparikepfel_efeladatgyujtemeny/ipari_kepfeldolgozas_efeladatgyujtemeny/index.html"
+                target="_blank">WEB</a></li>
+        <li><a href="https://web.inf.ufpr.br/vri/databases/parking-lot-database/"
+                target="_blank">https://web.inf.ufpr.br/vri/databases/parking-lot-database/</a></li>
+        <li><a href="https://stackoverflow.com/questions/34959455/detect-parking-lot-by-opencv"
+                target="_blank">https://stackoverflow.com/questions/34959455/detect-parking-lot-by-opencv</a></li>
+        <li><a href="https://stackoverflow.com/questions/35447293/how-do-you-count-cars-in-opencv-with-python"
+                target="_blank">https://stackoverflow.com/questions/35447293/how-do-you-count-cars-in-opencv-with-python</a>
+        </li>
+        <li><a href="https://customers.pyimagesearch.com/lesson-sample-histogram-of-oriented-gradients-and-car-logo-recognition/"
+                target="_blank">https://customers.pyimagesearch.com/lesson-sample-histogram-of-oriented-gradients-and-car-logo-recognition/</a>
+        </li>
+    </ul>
+
+
+    <h3>Költségvetésiterv</h3>
+
+    <p> Parkolóhelyek detektálására perspektív optikát használnék, ugyanis a hétköznapi életben ezek a
+        legelterjedtebbek.
+        Ez az optika perspektivitikus vetületét képezi le a térnek vagyis a térbeli párhuzamos egyeneseket
+        összetartó
+        egyenesekbe képezi le, a távolabbi tárgyak kisebbnek tűnnek.
+        A feladat szempontjából elegendő egy mobiltelefonnal vagy egy biztonsági kamerával készült kép is.</p>
+    <p> A technikai megvalósításhoz a legtöbb találatot egy Raspberry PI és a hozzá tartozó kamera modul
+        felhasználásával
+        találtam.
+        Ennek használata viszonylag olcsó megoldást kínál. Ezeken kívül én még kültéri biztonsági kamerákat is
+        használnék a
+        feladat megoldásához.
+        A kültéri biztonsági kamerák már sokkal szélesebb választékban állnak rendelkezésre, mint a Raspberry PI
+        által
+        kínált lehetőségek.</p>
+
+    <ul>
+        <li><a href="https://malnapc.hu/raspberry-pi-camera-board-v2-8mp" target="_blank">RASPBERRY PI CAMERA BOARD
+                V2 -
+                8MP 9.990FT</a>
+        </li>
+        <li><a href="https://malnapc.hu/raspberry-pi-high-quality-camera" target="_blank">RASPBERRY PI HIGH QUALITY
+                CAMERA 12.3MP SONY
+                IMX477 23.990FT</a>>
+            <ul>
+                <li>Műszaki adatok</li>
+                <ul>
+                    <li>Sony IMX477R stacked, back-illuminated sensor, 12.3 megapixels, 7.9 mm sensor diagonal, 1.55
+                        μm
+                        × 1.55 μm pixel size</li>
+                    <li>Ouput: RAW12/10/8, COMP8</li>
+                    <li>Back focus: Adjustable (12.5 mm–22.4 mm)</li>
+                    <li>Lens standards: C-mount, CS-mount (C-CS adapter included)</li>
+                    <li>IR cut filter: Integrated</li>
+                    <li>Ribbon cable length: 200 mm</li>
+                    <li>Tripod mount: 1/4”-20</li>
+                </ul>
+            </ul>
+        <li><a href="https://malnapc.hu/pt361060m3mp12" target="_blank">PT361060M3MP12 6mm, 3MP optika Raspberry Pi
+                HQ
+                kamerához</a>
+            11.990 FT</li>
+        <li><a href="https://malnapc.hu/pt3611614m10mp" target="_blank">PT3611614M10MP 16MM, 10MP OPTIKA RASPBERRY
+                PI HQ
+                KAMERÁHOZ</a>
+            23.990FT</li>
+    </ul>
+
+    <p>A feladat megoldható 35.990Ft-ból, de ahogy a lenti példa mutatja sokkal komolyabb felszerelést is
+        vásárolhatunk.
+    </p>
+
+    <ul>
+        <li><a href="https://www.edmundoptics.com/f/55mm-fl-partially-telecentric-imaging-lens/12332/"
+                target="_blank">55mm FL Partially-Telecentric Imaging Lens 613$ ~ 189.337Ft</a></li>
+        <li><a href="https://www.edmundoptics.com/f/basler-ace-usb-30-cameras/14831/ " target="_blank">Basler ace
+                USB
+                3.0 Cameras acA1920-150um 675$ ~ 208.487Ft</a></li>
+    </ul>
+
+
+</body>
+
+</html>
