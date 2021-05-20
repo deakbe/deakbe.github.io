@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>3. Mérföldkő</h1>
+    <ul>
+        <li>
+            <a href="index.html">Főoldal</a>
+        </li>
+        <li>
+            <a href="1merfoldko.html">1. Mérföldkő</a>
+        </li>
+        <li>
+            <a href="2merfoldko.html">2. Mérföldkő</a>
+        </li>
+    </ul>
+
+
+    <h5>Parkolóhelyek detektálása</h5>
+
+    <h3>Dokumentáció:</h3>
+    <h5>1.	A ki indulásul két képet vettem alapul. Az egyik kép az üres parkolóról készült, a másik kép az autókkal teli parkolóról.</h5>
+    <img src="test1.jpg" style="width:25%;height:25%;">
+    <img src="test2.jpg" style="width:25%;height:25%;">
+
+    <h5>2.	Kezdetben az egész parkolót próbáltam vizsgálni. Azonban a kezdeti sikertelenségek után csak a kép egy adott részét,
+        a növényzet által kevésbe takart parkoló részeket próbáltam vizsgálni. Létrehoztam egy egéresemény kezelő függvényt, melynek segítségével kitudtam jelölni a vizsgálni kívánt részeket. 
+        Az elmentett pixel koordinátákat a maszk elkészítéséhez használtam. Az eredmény a következő két képen látható:</h5>
+    <img src="vizsgaltresz1.jpg" style="width:25%;height:25%;">
+    <img src="vizsgaltresz2.jpg" style="width:25%;height:25%;">
+    <h5>3.	A következő lépésben a két képet a „subtract” OpenCV függvény felhasználásával kivontam egymásból, 
+        így egy olyan képet kaptam, amin a két kép különbsége láthatók, vagyis az autók. A kapott képet a „GaussianBlur” függvénnyel simítottam, majd a Cany éldetektort alkalmazva a következő képet kaptam:</h5>
+    <img src="canny.jpg" style="width:25%;height:25%;">   
+    <h5>4.	A kapott képen a HoughLinesP detektort alkalmaztam. A következő két kép ennek eredményét mutatja be a maszkolt és a teljes képen:</h5>
+    <img src="houghlines.jpg" style="width:25%;height:25%;">
+    <img src="houghlines1.jpg" style="width:25%;height:25%;">
+    <h5>Ezzel az üres parkolóhelyeket szerettem volna kijelölni, de sajnos nem jártam sikerrel.</h5>
+    <h5>5.	Utolsó lépésként kettő küszöbölést (egy a világos, egy pedig a sötét autók miatt) követően kontúrokat kerestem a képeken. 
+        A kontúrok köré téglalapokat rajzoltam. Csak azokat a kontúrokat rajzoltattam ki, amelyek egy bizonyos mérettartományban voltak, 
+        ezzel eldobva az autóknál kisebb és nagyobb kontúrokat.</h5>
+    <img src="eredmeny1.jpg" style="width:25%;height:25%;">
+    <img src="eredmeny.jpg" style="width:25%;height:25%;">
+    <img src="eredmeny3.jpg" style="width:25%;height:25%;">
+    <h3>Eredmények</h3>
+    <h5>A programot mindegyik, az adatbázisban szereplő, parkolón lefuttattam. Néhány eredmény a fent vizsgált parkolóra::</h5>
+    <img src="esos.jpg" style="width:25%;height:25%;">
+    <img src="esos1.jpg" style="width:25%;height:25%;">
+    <img src="felhos.jpg" style="width:25%;height:25%;">
+    <img src="napos.jpg" style="width:25%;height:25%;">
+    <h5>Néhány eredmény két másik, az adatbázisban szereplő parkolóra:</h5>
+    <img src="mpark1.jpg" style="width:25%;height:25%;">
+    <img src="mpark2.jpg" style="width:25%;height:25%;">
+    <h5>Szemmel látható, hogy a program működését az időjárás miatti látásiviszonyok nagyon befolyásolják. Még szembe tűnőbb az eredmény, ha egy teljesen másik parkolón futtatjuk le a programunkat.</h5>
+</body>
+</html>
